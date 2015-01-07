@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GymApp</string>
+
+    <!-- Action items for menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_dash">Dash</string>
+
+    <!-- Login Activity Strings (MainActivity) -->
+    <string name="login_title">Please Login</string>
+    <string name="login_username_placeholder">Username</string>
+    <string name="login_password_placeholder">Password</string>
+    <string name="login_button">Login</string>
+
+    <string name="title_activity_dash">Home</string>
+
+    <string name="no_exercises">You don\'t have any exercises, you can add some by clicking the button below.</string>
+    <string name="no_workouts">You don\'t have any workouts, you can add some by clicking the button below.</string>
+
+    <string name="exercise_name">Name</string>
+    <string name="example_exercise_name">Push Ups</string>
+    <string name="exercise_type">Type</string>
+    <string name="exercise_create_btn">Create</string>
+    <string name="exercise_save_btn">Save</string>
+    <string name="exercise_delete_btn">Delete</string>
+    <string-array name="exercise_type_list">
+        <item>Aerobic</item>
+        <item>Strength</item>
+        <item>Flexibility</item>
+        <item>Balance</item>
+    </string-array>
+
+    <string name="workout_name">Name</string>
+    <string name="example_workout_name">Chest Day</string>
+    <string name="workout_create_btn">Create</string>
+    <string name="workout_save_btn">Save</string>
+    <string name="workout_delete_btn">Delete</string>s
+
+    <string name="home">Home</string>
+    <string name="exercise">Exercise</string>
+    <string name="settings">Settings</string>
+    <string name="workouts">Workouts</string>
+    <!-- Navigation Drawer Titles -->
+    <array name="drawer_items">
+        <item name="dash">@string/home</item>
+        <item name="exercises">@string/exercise</item>
+        <item name="workouts">@string/workouts</item>
+        <item name="settings">@string/settings</item>
+    </array>
+
+    <!-- Navigation Drawer Resource Strings -->
+    <array name="drawer_icons">
+        <!--<item name="icon_calculator">@drawable/ic_calculator</item>-->
+    </array>
+
+</resources>
