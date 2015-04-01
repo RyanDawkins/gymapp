@@ -55,6 +55,7 @@ public class DrawerActivity extends ActionBarActivity {
 
             // Set the drawer toggle as the DrawerListener
             mDrawerLayout.setDrawerListener(mDrawerToggle);
+            mDrawerToggle.syncState();
         }
 
         ListView drawerList = (ListView) findViewById(R.id.left_drawer);
