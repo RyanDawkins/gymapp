@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,8 +21,10 @@ import com.ryanddawkins.gymapp.adapters.ExerciseListAdapter;
 import com.ryanddawkins.gymapp.listeners.ExerciseCreateClickListener;
 import com.ryanddawkins.gymapp.listeners.ExerciseFabListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dawkins on 12/6/14.
@@ -38,11 +41,19 @@ public class ExerciseFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_exercise, container, false);
 
         this.checkedItems = new HashMap<Integer, Boolean>();
-        this.selectModeOn = false;
+        this.selectModeOn = true;
         this.setExerciseAdapter(new ExerciseListAdapter(getActivity(), this.checkedItems));
         loadListView(rootView);
 
+        this.setHasOptionsMenu(true);
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_exercise, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     public ListAdapter getExerciseAdapter() {
@@ -53,6 +64,17 @@ public class ExerciseFragment extends Fragment {
         this.exerciseAdapter = exerciseAdapter;
     }
 
+    public Exercise[] getSelectedItems() {
+        ArrayList<Exercise> selected = new ArrayList<Exercise>();
+        for(Map.Entry<Integer, Boolean> entry : this.checkedItems.entrySet()){
+            if(entry.getValue()) {
+                selected.add(this.items[entry.getKey()]);
+            }
+        }
+
+        return selected.toArray(new Exercise[selected.size()]);
+    }
+
     public void loadListView(View rootView) {
 
         List<Exercise> exercises = Select.from(Exercise.class).orderBy("name").list();
@@ -61,8 +83,7 @@ public class ExerciseFragment extends Fragment {
             this.checkedItems.put(i, false);
         }
 
-        ListView listView = (ListView) rootView.findViewById(R.id.list_exercise);
-
+        final ListView listView = (ListView) rootView.findViewById(R.id.list_exercise);
         if(this.items.length == 0) {
             listView.setVisibility(View.GONE);
             rootView.setBackgroundColor(getResources().getColor(R.color.blue_200));
@@ -70,32 +91,23 @@ public class ExerciseFragment extends Fragment {
             TextView noDataView = (TextView) rootView.findViewById(R.id.no_exercises_message);
             noDataView.setVisibility(View.GONE);
             this.exerciseAdapter.setValues(this.items);
+            this.exerciseAdapter.setSelectModeOn(this.selectModeOn);
             listView.setAdapter(this.exerciseAdapter);
             listView.setOnItemClickListener(new ExerciseOnItemClickListener(this.items, this.getActivity()));
-            listView.setOnItemLongClickListener(new OnLongItemClick());
         }
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.exercise_fab);
         fab.setOnClickListener(new ExerciseFabListener(getActivity()));
-
         fab.attachToListView(listView);
     }
 
-    private class OnLongItemClick implements AdapterView.OnItemLongClickListener {
+    public ExerciseFragment setSelectModeOn(boolean selectModeOn) {
+        this.selectModeOn = selectModeOn;
+        return this;
+    }
 
-        @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-            if(!selectModeOn) {
-                boolean value = checkedItems.get(position);
-                checkedItems.put(position, !value);
-                CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
-                checkbox.setChecked(!value);
-                checkbox.setVisibility(View.VISIBLE);
-            }
-
-            return false;
-        }
+    public boolean isSelectModeOn() {
+        return this.selectModeOn;
     }
 
     private class ExerciseOnItemClickListener implements AdapterView.OnItemClickListener {
@@ -115,7 +127,7 @@ public class ExerciseFragment extends Fragment {
             CreateExerciseFragment createExerciseFragment = new CreateExerciseFragment();
             createExerciseFragment.setSaveBtnNameText(this.activity.getString(R.string.exercise_save_btn));
             createExerciseFragment.setSaveButtonListener(new ExerciseCreateClickListener(this.activity, exercise));
-            createExerciseFragment.setExercise(exercise);
+                createExerciseFragment.setExercise(exercise);
 
             this.activity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, createExerciseFragment)

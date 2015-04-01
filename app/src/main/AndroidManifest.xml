@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryanddawkins.gymapp.DashActivity"
+            android:name="com.ryanddawkins.gymapp.DrawerActivity"
             android:label="@string/title_activity_dash" >
         </activity>
 

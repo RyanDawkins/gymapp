@@ -15,7 +15,7 @@ import com.ryanddawkins.gymapp.listeners.NavigationDrawerListener;
 /**
  * Created by dawkins on 11/28/14.
  */
-public class DashActivity extends ActionBarActivity {
+public class DrawerActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +33,28 @@ public class DashActivity extends ActionBarActivity {
         if(toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setElevation(4);
+            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            new ActionBarDrawerToggle(this, drawerLayout,
-                    toolbar, // Nav drawer Icon
-                    R.string.app_name, // Nav drawer open - description for accessibility
-                    R.string.app_name // Nav drawer close
-            ) {
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    getSupportActionBar().setTitle(getTitle());
-                    invalidateOptionsMenu();
+            DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                    toolbar, R.string.app_name, R.string.app_name) {
+
+                /** Called when a drawer has settled in a completely closed state. */
+                public void onDrawerClosed(View view) {
+                    super.onDrawerClosed(view);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 }
 
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    getSupportActionBar().setTitle(getTitle());
-                    invalidateOptionsMenu();
+                /** Called when a drawer has settled in a completely open state. */
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 }
             };
+
+            // Set the drawer toggle as the DrawerListener
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
         }
 
         ListView drawerList = (ListView) findViewById(R.id.left_drawer);

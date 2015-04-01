@@ -26,13 +26,11 @@ public class MainActivity extends ActionBarActivity {
         if(toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setElevation(4);
-            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
         }
 
         AuthFactory authFactory = new AuthFactory();
         if(authFactory.getAuth().isLoggedin()) {
-            Intent dashIntent = new Intent(this, DashActivity.class);
+            Intent dashIntent = new Intent(this, DrawerActivity.class);
             startActivity(dashIntent);
             finish();
         }

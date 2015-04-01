@@ -9,4 +9,4 @@
     app:theme="@style/Theme.Gym.Actionbar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     >
-    </android.support.v7.widget.Toolbar>
+</android.support.v7.widget.Toolbar>
