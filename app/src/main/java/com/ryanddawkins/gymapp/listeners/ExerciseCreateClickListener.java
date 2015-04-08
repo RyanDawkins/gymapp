@@ -2,6 +2,7 @@ package com.ryanddawkins.gymapp.listeners;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -9,7 +10,6 @@ import android.widget.Spinner;
 
 import com.ryanddawkins.gymapp.Exercise;
 import com.ryanddawkins.gymapp.R;
-import com.ryanddawkins.gymapp.fragments.ExerciseFragment;
 
 /**
  * Created by dawkins on 12/13/14.
@@ -54,9 +54,6 @@ public class ExerciseCreateClickListener implements View.OnClickListener {
                 this.exercise.setType(-1);
         }
         this.exercise.save();
-
-        this.activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new ExerciseFragment())
-                .commit();
+        NavUtils.navigateUpFromSameTask(this.activity);
     }
 }

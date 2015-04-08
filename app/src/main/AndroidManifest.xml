@@ -18,12 +18,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryanddawkins.gymapp.DrawerActivity"
+            android:name="com.ryanddawkins.gymapp.activities.DashActivity"
             android:label="@string/title_activity_dash" >
         </activity>
 
+        <activity
+            android:name="com.ryanddawkins.gymapp.activities.ExerciseActivity"
+            android:label="@string/title_activity_exercises" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanddawkins.gymapp.activities.DashActivity" />
+        </activity>
+        <activity
+            android:name="com.ryanddawkins.gymapp.activities.ExerciseEditActivity"
+            android:label="@string/title_activity_create_exercise" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanddawkins.gymapp.activities.ExerciseActivity" />
+        </activity>
+
+        <activity
+            android:name="com.ryanddawkins.gymapp.activities.WorkoutActivity"
+            android:label="@string/title_activity_workouts" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanddawkins.gymapp.activities.DashActivity" />
+        </activity>
+        <activity
+            android:name="com.ryanddawkins.gymapp.activities.WorkoutEditActivity"
+            android:label="@string/title_activity_create_workout" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanddawkins.gymapp.activities.WorkoutActivity" />
+        </activity>
+        <activity
+            android:name="com.ryanddawkins.gymapp.activities.WorkoutSelectExerciseActivity"
+            android:label="@string/title_activity_exercises" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanddawkins.gymapp.activities.WorkoutEditActivity" />
+        </activity>
+
         <meta-data android:name="DATABASE" android:value="gymapp.db" />
-        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="VERSION" android:value="4" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.ryanddawkins.gymapp" />
 

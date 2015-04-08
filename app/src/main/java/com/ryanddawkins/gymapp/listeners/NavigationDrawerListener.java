@@ -1,18 +1,17 @@
 package com.ryanddawkins.gymapp.listeners;
 
 
+import android.content.Intent;
 import android.content.res.TypedArray;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.ryanddawkins.gymapp.activities.DrawerActivity;
 import com.ryanddawkins.gymapp.R;
-import com.ryanddawkins.gymapp.fragments.DashFragment;
-import com.ryanddawkins.gymapp.fragments.ExerciseFragment;
-import com.ryanddawkins.gymapp.fragments.WorkoutFragment;
+import com.ryanddawkins.gymapp.activities.DashActivity;
+import com.ryanddawkins.gymapp.activities.ExerciseActivity;
+import com.ryanddawkins.gymapp.activities.WorkoutActivity;
 
 /**
  * Created by dawkins on 12/5/14.
@@ -34,30 +33,21 @@ public class NavigationDrawerListener implements AdapterView.OnItemClickListener
         }
         String itemText = items[position];
 
-        Fragment fragment = null;
+        Intent intent;
         if(itemText.equals(this.activity.getString(R.string.home))) {
-            fragment = new DashFragment();
+            intent = new Intent(this.activity, DashActivity.class);
         }
         else if(itemText.equals(this.activity.getString(R.string.exercise))) {
-            fragment = new ExerciseFragment();
+            intent = new Intent(this.activity, ExerciseActivity.class);
         }
         else if(itemText.equals(this.activity.getString(R.string.workouts))) {
-            fragment = new WorkoutFragment();
+            intent = new Intent(this.activity, WorkoutActivity.class);
         }
         else {
-            fragment = new DashFragment();
-            itemText = this.activity.getString(R.string.home);
+            intent = new Intent(this.activity, DashActivity.class);
         }
 
-        DrawerLayout mDrawerLayout;
-        mDrawerLayout = (DrawerLayout) this.activity.findViewById(R.id.drawer_layout);
-        mDrawerLayout.closeDrawers();
-
-        ActionBar actionBar = this.activity.getSupportActionBar();
-        actionBar.setTitle(itemText);
-
-        this.activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
+        ((DrawerActivity)this.activity).closeDrawer();
+        this.activity.startActivity(intent);
     }
 }

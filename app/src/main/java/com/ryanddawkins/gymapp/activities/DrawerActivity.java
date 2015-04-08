@@ -1,15 +1,16 @@
-package com.ryanddawkins.gymapp;
+package com.ryanddawkins.gymapp.activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ListView;
 
+import com.ryanddawkins.gymapp.R;
 import com.ryanddawkins.gymapp.adapters.DashListAdapterFactory;
-import com.ryanddawkins.gymapp.fragments.DashFragment;
 import com.ryanddawkins.gymapp.listeners.NavigationDrawerListener;
 
 /**
@@ -17,26 +18,21 @@ import com.ryanddawkins.gymapp.listeners.NavigationDrawerListener;
  */
 public class DrawerActivity extends ActionBarActivity {
 
+    private DrawerLayout mDrawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_dash);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content_frame, new DashFragment())
-                    .commit();
-        }
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         if(toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setElevation(4);
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
 
-            DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            this.mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                     toolbar, R.string.app_name, R.string.app_name) {
 
@@ -63,6 +59,10 @@ public class DrawerActivity extends ActionBarActivity {
 
         DashListAdapterFactory dashListAdapterFactory = new DashListAdapterFactory(this, R.layout.drawer_item);
         drawerList.setAdapter(dashListAdapterFactory.dash());
+    }
+
+    public void closeDrawer() {
+        this.mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 
 }

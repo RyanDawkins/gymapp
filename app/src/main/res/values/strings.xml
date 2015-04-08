@@ -8,6 +8,7 @@
     <string name="action_dash">Dash</string>
 
     <string name="action_ok"></string>
+    <string name="action_select">Select</string>
 
     <!-- Login Activity Strings (MainActivity) -->
     <string name="login_title">Please Login</string>
@@ -16,6 +17,10 @@
     <string name="login_button">Login</string>
 
     <string name="title_activity_dash">Home</string>
+    <string name="title_activity_exercises">Exercises</string>
+    <string name="title_activity_create_exercise">Edit Exercise</string>
+    <string name="title_activity_workouts">Workouts</string>
+    <string name="title_activity_create_workout">Edit Workout</string>
 
     <string name="no_exercises">You don\'t have any exercises, you can add some by clicking the button below.</string>
     <string name="no_workouts">You don\'t have any workouts, you can add some by clicking the button below.</string>
@@ -37,6 +42,7 @@
     <string name="example_workout_name">Chest Day</string>
     <string name="workout_create_btn">Create</string>
     <string name="workout_save_btn">Save</string>
+    <string name="workout_add_exercises_btn">Add Exercises</string>
     <string name="workout_delete_btn">Delete</string>s
 
     <string name="home">Home</string>

@@ -1,12 +1,12 @@
 package com.ryanddawkins.gymapp.listeners;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.ryanddawkins.gymapp.R;
 import com.ryanddawkins.gymapp.Workout;
-import com.ryanddawkins.gymapp.fragments.CreateWorkoutFragment;
+import com.ryanddawkins.gymapp.activities.WorkoutEditActivity;
 
 /**
  * Created by dawkins on 12/20/14.
@@ -24,14 +24,8 @@ public class WorkoutOnItemClickListener implements AdapterView.OnItemClickListen
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Workout workout = this.workouts[position];
-
-        CreateWorkoutFragment fragment = new CreateWorkoutFragment();
-        fragment.setSaveBtnNameText(this.activity.getResources().getString(R.string.workout_save_btn));
-        fragment.setSaveButtonListener(new WorkoutCreateClickListener(this.activity, workout));
-        fragment.setWorkout(workout);
-
-        this.activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
+        Intent intent = new Intent(this.activity, WorkoutEditActivity.class);
+        intent.putExtra("workoutid", workout.getId());
+        this.activity.startActivity(intent);
     }
 }

@@ -7,8 +7,8 @@ import android.widget.EditText;
 
 import com.ryanddawkins.gymapp.Auth;
 import com.ryanddawkins.gymapp.AuthFactory;
-import com.ryanddawkins.gymapp.DrawerActivity;
 import com.ryanddawkins.gymapp.R;
+import com.ryanddawkins.gymapp.activities.DashActivity;
 
 /**
  * Created by dawkins on 11/25/14.
@@ -32,7 +32,7 @@ public class LoginButtonListener implements View.OnClickListener {
         AuthFactory authFactory = new AuthFactory();
         Auth auth = authFactory.getAuth();
         if(auth.authorize(username, password)) {
-            Intent dashIntent = new Intent(this.activity, DrawerActivity.class);
+            Intent dashIntent = new Intent(this.activity, DashActivity.class);
             this.activity.startActivity(dashIntent);
             this.activity.finish();
         } else {

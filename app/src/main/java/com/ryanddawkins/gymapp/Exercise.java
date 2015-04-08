@@ -5,6 +5,7 @@ import com.orm.SugarRecord;
 /**
  * Created by dawkins on 12/13/14.
  */
+
 public class Exercise extends SugarRecord<Exercise> {
 
     public static int AEROBIC = 0;

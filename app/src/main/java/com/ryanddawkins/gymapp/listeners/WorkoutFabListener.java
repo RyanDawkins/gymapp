@@ -1,10 +1,10 @@
 package com.ryanddawkins.gymapp.listeners;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.ryanddawkins.gymapp.R;
-import com.ryanddawkins.gymapp.fragments.CreateWorkoutFragment;
+import com.ryanddawkins.gymapp.activities.WorkoutEditActivity;
 
 /**
  * Created by dawkins on 12/18/14.
@@ -19,15 +19,8 @@ public class WorkoutFabListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
-        CreateWorkoutFragment fragment = new CreateWorkoutFragment();
-        fragment.setSaveBtnNameText(this.activity.getString(R.string.workout_create_btn));
-        fragment.setSaveButtonListener(new WorkoutCreateClickListener(this.activity));
-
-        this.activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
-
+        Intent intent = new Intent(this.activity, WorkoutEditActivity.class);
+        this.activity.startActivity(intent);
     }
 
 

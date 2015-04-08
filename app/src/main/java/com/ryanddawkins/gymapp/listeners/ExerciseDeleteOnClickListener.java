@@ -1,11 +1,10 @@
 package com.ryanddawkins.gymapp.listeners;
 
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.view.View;
 
 import com.ryanddawkins.gymapp.Exercise;
-import com.ryanddawkins.gymapp.R;
-import com.ryanddawkins.gymapp.fragments.ExerciseFragment;
 
 /**
  * Created by dawkins on 12/16/14.
@@ -23,8 +22,6 @@ public class ExerciseDeleteOnClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         this.exercise.delete();
-        this.activity.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new ExerciseFragment())
-                .commit();
+        NavUtils.navigateUpFromSameTask(this.activity);
     }
 }

@@ -19,6 +19,7 @@ public abstract class AbstractExerciseListAdapter extends ArrayAdapter<Exercise>
     }
 
     public void setValues(Exercise[] values) {
+        this.clear();
         this.values = values;
         for(int i = 0; i < values.length; i++) {
             this.add(values[i]);
