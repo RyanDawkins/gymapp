@@ -96,18 +96,31 @@ public class WorkoutEditActivity extends ToolbarActivity {
         this.workout = workout;
 
         if(this.selected == null) return;
+        HashMap<Long, Exercise> exerciseHashMap = WorkoutExercise.getExercisesByWorkout(this.workout.getId());
         for(int i = 0; i < this.selected.length; i++) {
 
-            Exercise exercise = Exercise.findById(Exercise.class, (long) this.selected[i]);
-            if((WorkoutExercise.getByComposite(this.workout.getId(), (long)this.selected[i])) == null) {
+            Long exerciseID = this.selected[i];
+            Exercise exercise = exerciseHashMap.get(exerciseID);
+            if(exercise == null) {
+                exercise = Exercise.findById(Exercise.class, this.selected[i]);
                 WorkoutExercise workoutExercise = new WorkoutExercise();
                 workoutExercise.setWorkout(this.workout);
                 workoutExercise.setExercise(exercise);
                 workoutExercise.save();
+            } else {
+                exerciseHashMap.remove(exerciseID);
+                this.workoutExercises.remove(exerciseID);
             }
-
             this.workoutExercises.put(exercise.getId(), exercise);
         }
+
+        Iterator it = exerciseHashMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            Exercise exercise = (Exercise) pair.getValue();
+            WorkoutExercise.deleteAll(WorkoutExercise.class, "exercise = ? and workout = ?", ""+exercise.getId(), ""+this.workout.getId());
+        }
+
     }
 
     public HashMap<Long, Exercise> getWorkoutExercises() {

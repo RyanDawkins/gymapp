@@ -53,21 +53,28 @@ public class CreateWorkoutFragment extends Fragment {
         String workoutName = this.getActivity().getIntent().getStringExtra(WorkoutEditActivity.WORKOUT_NAME);
         long workoutId = this.getActivity().getIntent().getLongExtra(WorkoutEditActivity.WORKOUT_ID, -1);
 
+        EditText name = (EditText) this.rootView.findViewById(R.id.workout_name);
+
         if(workoutId != -1) {
             this.workout = Workout.findById(Workout.class, workoutId);
+            InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         }
 
         Button saveBtn = (Button) this.rootView.findViewById(R.id.workout_save_btn);
 
-        EditText name = (EditText) this.rootView.findViewById(R.id.workout_name);
         if(hasSelected) {
-            InputMethodManager imm = (InputMethodManager) this.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(name.getWindowToken(), 0);
-
+            InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         }
 
         boolean hasWorkout = false;
         if(this.workout != null) {
+            InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             this.setHasOptionsMenu(true);
             saveBtn.setVisibility(View.GONE);
             name.setText(this.workout.getName());

@@ -46,14 +46,15 @@
         </activity>
         <activity
             android:name="com.ryanddawkins.gymapp.activities.WorkoutEditActivity"
-            android:label="@string/title_activity_create_workout" >
+            android:label="@string/title_activity_create_workout"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ryanddawkins.gymapp.activities.WorkoutActivity" />
         </activity>
         <activity
             android:name="com.ryanddawkins.gymapp.activities.WorkoutSelectExerciseActivity"
-            android:label="@string/title_activity_exercises" >
+            android:label="@string/title_activity_exercises">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ryanddawkins.gymapp.activities.WorkoutEditActivity" />

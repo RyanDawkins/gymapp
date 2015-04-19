@@ -7,7 +7,7 @@ import com.orm.SugarRecord;
  */
 public class Workout extends SugarRecord<Workout> {
 
-    private String name;
+    String name;
 
     public Workout() {
         this(null);

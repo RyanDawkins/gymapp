@@ -11,6 +11,8 @@ public class WorkoutSelectExerciseActivity extends ExerciseActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
+
+
         setTitle("Select Exercise");
     }
 

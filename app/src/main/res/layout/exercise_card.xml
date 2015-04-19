@@ -60,6 +60,46 @@
                     android:textSize="16sp"
                     android:hint="@string/exercise_type" />
                 <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <NumberPicker
+                        android:id="@+id/set_goal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_alignParentLeft="true"
+                        />
+                    <TextView
+                        android:id="@+id/set_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Number of Sets"
+                        android:layout_below="@id/set_goal"
+                        android:layout_alignParentLeft="true"
+                        />
+
+                    <NumberPicker
+                        android:id="@+id/goal_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="32dp"
+                        android:layout_alignParentRight="true"
+                        />
+                    <TextView
+                        android:id="@+id/goal_weight_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Goal Weight"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/goal_weight"
+                        />
+
+
+                </RelativeLayout>
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
