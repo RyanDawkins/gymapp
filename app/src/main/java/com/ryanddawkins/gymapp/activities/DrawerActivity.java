@@ -49,7 +49,7 @@ public class DrawerActivity extends ActionBarActivity {
                 }
             };
 
-            // Set the drawer toggle as the DrawerListener
+            // Sets the drawer toggle as the DrawerListener
             mDrawerLayout.setDrawerListener(mDrawerToggle);
             mDrawerToggle.syncState();
         }

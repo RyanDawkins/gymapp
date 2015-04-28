@@ -9,6 +9,7 @@
 
         <item name="colorAccent">@color/blue_a200</item>
         <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 

@@ -3,20 +3,27 @@ package com.ryanddawkins.gymapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.Parse;
 import com.ryanddawkins.gymapp.activities.DrawerActivity;
 import com.ryanddawkins.gymapp.fragments.LoginFragment;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "7KLbh8k6Y3aD8yqytOHYHAjTNlpCCymgVoV74LGD", "zb5p0eFDAxhii7ne5oRrlcQhE0FLWyFyrm9GbSnH");
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new LoginFragment())

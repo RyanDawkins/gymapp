@@ -5,11 +5,11 @@ import com.orm.SugarRecord;
 /**
  * Created by dawkins on 4/14/15.
  */
-public class Set extends SugarRecord<Set> {
+public class Sets extends SugarRecord<Sets> {
 
     Exercise exercise;
     Workout workout;
-    double numberOfSets;
+    int numberOfReps;
     double weight;
 
     public Exercise getExercise() {
@@ -28,12 +28,12 @@ public class Set extends SugarRecord<Set> {
         this.workout = workout;
     }
 
-    public double getNumberOfSets() {
-        return numberOfSets;
+    public int getNumberOfReps() {
+        return numberOfReps;
     }
 
-    public void setNumberOfSets(double numberOfSets) {
-        this.numberOfSets = numberOfSets;
+    public void setNumberOfReps(int numberOfReps) {
+        this.numberOfReps = numberOfReps;
     }
 
     public double getWeight() {
